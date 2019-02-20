@@ -24,7 +24,6 @@
 <div class="col">
     {% csrf_token %}
     {{ form|crispy }}
-    {% comment %} {{ form.name|as_crispy_field }} {% endcomment %}
     <button class="btn btn-primary" type="submit">Submit</button>
 </div>
 </div>
