@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    
+{% endblock %}
+
+{% block css %}
+
+   <link href="{% static 'css/fa.css' %}" rel="stylesheet" type="text/css" media="all">
+   
+  
+{% endblock %}
+
+
+{% block body %}
+<div class="bg-white"  style="margin: 0 auto; width: 600px; ">
+<h2 class="text-dark text-center"> Add Movie Here </h2>
+<div class="container">
+
+<form method="POST" action="." enctype="multipart/form-data">
+<div class="row">
+<div class="col">
+    {% csrf_token %}
+    {{ form|crispy }}
+    {% comment %} {{ form.name|as_crispy_field }} {% endcomment %}
+    <button class="btn btn-primary" type="submit">Submit</button>
+</div>
+</div>
+</form>
+
+
+
+
+</div>
+</div>
+
+{% endblock body %}

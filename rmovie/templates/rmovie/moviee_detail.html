@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    
+{% endblock %}
+
+{% block css %}
+<link href="{% static 'css/fa.css' %}" rel="stylesheet" type="text/css" media="all">
+<style>
+
+#fact1 {
+background: url("{{ moviee.murl }}") center top no-repeat fixed;
+background-size: cover;
+padding: 40px 0 ;
+position: relative;
+}
+#fact1::before {
+content: '';
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+background: rgba(5, 5, 5, 0.78);
+z-index: 0;
+}
+
+
+#fact1 .container {
+position: relative;
+z-index: 10;
+}
+
+
+</style>
+
+{% endblock %}
+
+
+{% block body %}
+<div id="fact1" >
+
+<div class="container"  style="margin: 0 auto; width: 1000px;">
+
+  <div class="row">
+    <div class="col-md-5">
+    <img class="card-img-top image" src="{{ moviee.murl }}" alt="{{ post.name }}" style="height: 480px;">
+   
+    </div>
+    <div class="col-md-7">
+        <h1 class="name">{{ moviee.name }}</h1>
+        <p class="star" >{{ moviee.mdate }} 
+       <span style="margin-left: 20px;"><i class="fa fa-star-o" style="color:rgba(137, 255, 162, 0.78)"></i>  {{ moviee.rating }} </span>
+       <span style="margin-left: 20px;">{{ moviee.movietime }} </span></p>
+       <p class="star" >{{ moviee.mtype  }}</p>
+       <h2 style="color:rgba(137, 255, 162, 0.78); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">{{ moviee.body  }}</h2>
+       <h5 class="star" style="text-align:justify">{{ moviee.description  }}</h5>
+       <h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;">Director : <span class="star">{{ moviee.director  }}</span></h6>
+       <h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;">Main Cast : <span class="star">{{ moviee.maincast  }}</span></h6>
+    </div>
+  <div>
+
+
+ <div class="headerr" style="margin-top: 30px;">
+<h2 style="color:rgb(236, 233, 233);" >{{ moviee.name }} Trailer </h2><hr style="border-width: 2px; border-color:rgba(137, 255, 162, 0.78) " />
+<iframe width="920" height="345" src="{{moviee.youtube}}" ></iframe>
+</div>
+
+{% comment %} {% for copy in moviee.bookinstance_set.all %} {% endcomment %}
+<div class="headerr" style="margin-top: 30px;">
+<h2 style="color:rgb(236, 233, 233);" >{{ post.cast.name }} Cast and Crew </h2><hr style="border-width: 2px; border-color:rgba(137, 255, 162, 0.78) " />
+<h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;">Original Language:  <span class="star">{{copy.cname}} </span></h6>
+{% comment %} {% endfor %} {% endcomment %}
+</div>
+
+
+<div class="headerr" style="margin-top: 30px;">
+<h2 style="color:rgb(236, 233, 233);" >{{ moviee.name }} Details </h2><hr style="border-width: 2px; border-color:rgba(137, 255, 162, 0.78) " />
+<h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;">Status:  <span class="star">{{moviee.detai.Status}} </span></h6>
+<h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;">Original Title:  <span class="star">{{moviee.detai.name}} </span></h6>
+<h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;">Original Language:  <span class="star">{{moviee.detai.Language}} </span></h6>
+<h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;">Budget:  <span class="star">$ {{moviee.detai.Budget }} </span></h6>
+<h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;">Revenue:  <span class="star">$ {{moviee.detai.Revenue}} </span></h6>
+<h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;">Production Companies:  <span class="star">{{moviee.detai.Production_Companies}} </span></h6>
+<h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;">Production Country:  <span class="star">{{moviee.detai.Production_Country}} </span></h6>
+<h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;"> Ratiing:  <span class="star"><i class="fa fa-star-o" style="color:rgba(137, 255, 162, 0.78)"></i> {{moviee.rating}} </span></h6>
+<h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;">-18:  <span class="star">{{moviee.detai.adult}} </span></h6>
+</div></div>
+
+<div class="headerr" style="margin-top: 30px;">
+<h2 style="color:rgb(236, 233, 233);" >Reviews And Like </h2><hr style="border-width: 2px; border-color:rgba(137, 255, 162, 0.78) " />
+<div class = "">
+<div class="fb-like "  data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-size="large" data-mobile="Auto-detected" data-show-faces="true" data-share="true" style="color: green;"></div>
+</div>
+
+<div class = "">
+<div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-colorscheme="dark" data-mobile="Auto-detected" data-numposts="10" ></div>
+</div>
+</div>
+
+</div>
+</div>
+
+{% comment %} {% for choice in moviee.choice.all %} {% endcomment %}
+{% comment %} <div class="row" style="margin-top: 30px;">
+ <h2 style="color:rgb(236, 233, 233);" >Cast </h2><hr style="border-width: 2px; border-color:rgba(137, 255, 162, 0.78) " />
+  <div class="col-sm-2">
+    <div class="card">
+     <img class="card-img-top image" src="{{ moviee.choice.murl }}" alt="{{ post.name }}" style="height: 370px;"> 
+    </div>
+  </div>
+
+</div>
+</div> {% endcomment %}
+
+{% endblock %}
