@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('rmovie.urls')),
+    path('api/', include("rmovie.api.urls")),
 ]
 
 if settings.DEBUG:

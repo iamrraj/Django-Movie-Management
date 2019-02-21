@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     'markdown_deux',
     'crispy_forms',
     'tinymce',
+    'rest_framework',
+    'drf_multiple_model',
 ]
+
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -54,6 +58,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': [],
+}
+
 
 ROOT_URLCONF = 'Movie.urls'
 

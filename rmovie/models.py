@@ -28,7 +28,7 @@ class Moviee(models.Model):
   mtype = models.CharField(max_length=100)
   director =  models.CharField(max_length=100)
   description = models.TextField()
-  maincast = models.CharField(max_length=200)
+  maincast = models.TextField()
   body = models.CharField(max_length=200)
   ytube = models.URLField(blank = True, null = True)
   timestamp = models.DateTimeField(auto_now_add=True, null=True)
