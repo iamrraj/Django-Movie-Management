@@ -12,6 +12,8 @@ class DetailInline(admin.StackedInline):
 	extra = 1
 
 
+
+
 class MovieeAdmin(admin.ModelAdmin):
 	fieldsets = [
 		(None, {'fields': ['name', 'mdate','rating','mtype', 'director','murl','movietime','description','maincast','body','ytube']}),

@@ -1,0 +1,17 @@
+
+
+<div class="row" style="margin-top: -20px;">
+ {% for post in most %}  
+  <div class="col-sm-3">
+    <div class="card">
+    <a href="{% url 'rmovie:product_detail' post.pk %}">
+     <img class="card-img-top image" src="{{ post.murl }}" alt="{{ post.cname }}" style="height: 370px;">
+      <div class="middle">
+        <p class="cc" style="margin-bottom: 80px;">{{ post.mdate|date:'Y-m-d' }}</p>
+        <p class="cc">{{ post.name  }}</p>
+        <p class="cc" style="margin-top: 80px;"><i class="fa fa-star-o" style="color: green;"></i>  {{ post.rating }}</p>
+      </div></a>
+    </div>
+  </div>
+{% endfor %}
+</div>

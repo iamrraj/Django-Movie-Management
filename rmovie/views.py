@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.utils import timezone
 from .models import Moviee, Cast,Author
@@ -8,10 +8,10 @@ from django.views.generic import ListView, DetailView
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from .forms import MovieForm
+from .forms import PostForm
 from django.views import generic
 from django.contrib.auth.models import User
-
+from random import sample
 # from django_filters import filters
 
 # filters.LOOKUP_TYPES = [
@@ -30,6 +30,7 @@ from django.contrib.auth.models import User
 
 def recent(request):
     most_recent = Moviee.objects.order_by('-timestamp')[:21]
+    #most_recent = Moviee.objects.all().order_by('?')[:10]
     return render(request, 'recent.html', {'most_recent': most_recent})
 
 def upcoming(request):
@@ -71,41 +72,46 @@ def BlogListView(request):
         contact_list = contact_list.filter(Q(name__icontains=search_term)|
                                            Q(director__icontains=search_term)|
                                            Q(mtype__icontains=search_term)).distinct()
-        
 
-                        # Q(author=query)
-                        # # ).distinct()
-    paginator = Paginator(contact_list, 20) # Show 4 contacts per page
-
-    page = request.GET.get('page')
-    contacts = paginator.get_page(page)
-    return render(request, 'index.html', {'contacts': contacts})
-
-
-class ProductDetailView(DetailView):
-    model = Moviee
-    template_name = 'moviedetail.html'
+    page = request.GET.get('page', 1)
+    paginator = Paginator(contact_list, 16)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
 
 
-# def get_author(user):
-#     qs = Author.objects.filter(user=user)
-#     if qs.exists():
-#         return qs[0]
-#     return None
+    # paginator = Paginator(contact_list, 20) # Show 4 contacts per page
+    # page = request.GET.get('page')
+    # contacts = paginator.get_page(page)
+    return render(request, 'index.html', {'users': users })
+
+
+# class ProductDetailView(DetailView):
+#     # context_object_name = 'book_list'
+#     # most = Moviee.objects.all().order_by('?')[:10]
+#     model = Moviee
+#     template_name = 'moviedetail.html'
+
+
+def post_detail(request, pk): #retrieve
+    most_recent = Moviee.objects.all().order_by('?')[:4]
+    moviee = get_object_or_404(Moviee, pk=pk)
+   
+    context = {
+        'moviee': moviee,
+        'most_recent': most_recent,
+    }
+    return render(request, 'moviedetail.html', context)
+
 
 def post_create(request):
-    title = 'Create'
-    form = MovieForm(request.POST or None, request.FILES or None)
-    # author = get_author(request.user)
-    if request.method == "POST":
+    if request.method == 'POST':
+        form = PostForm(request.POST)
         if form.is_valid():
-            # form.instance.author = author
-            form.save()
-            return redirect(reverse(" ", kwargs={
-                'id': form.instance.id
-            }))
-    context = {
-        'title': title,
-        'form': form
-    }
-    return render(request, "addmovie.html", context)
+            pass  # does nothing, just trigger the validation
+    else:
+        form = PostForm()
+    return render(request, 'addmovie.html', {'form': form})

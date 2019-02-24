@@ -1,5 +1,6 @@
 from django.db import models
 import datetime
+from tinymce.models import HTMLField
 from django.utils import timezone
 from markdown_deux import markdown
 from django.dispatch import receiver
@@ -18,7 +19,6 @@ class Author(models.Model):
         return self.user.username
 
 class Moviee(models.Model):
-
   id = models.AutoField(primary_key=True)
   name = models.CharField(max_length=150)
   mdate = models.DateField()
@@ -27,8 +27,8 @@ class Moviee(models.Model):
   movietime = models.CharField(max_length=50)
   mtype = models.CharField(max_length=100)
   director =  models.CharField(max_length=100)
-  description = models.TextField()
-  maincast = models.TextField()
+  description =HTMLField()
+  maincast = HTMLField()
   body = models.CharField(max_length=200)
   ytube = models.URLField(blank = True, null = True)
   timestamp = models.DateTimeField(auto_now_add=True, null=True)
@@ -58,6 +58,11 @@ class Moviee(models.Model):
   def get_cast(self):
       return self.comments.all().order_by('-role')
 
+  @property
+  def get_detail(self):
+      return self.details.all().order_by('-role')
+
+
   
 class Cast(models.Model):
   name = models.ForeignKey(Moviee, related_name='comments', on_delete=models.CASCADE)
@@ -74,9 +79,7 @@ class Cast(models.Model):
 
 
 
-
 class Detai(models.Model):
-
   name = models.OneToOneField(Moviee, on_delete=models.CASCADE)
   Status = models.CharField(max_length=100)
   Language = models.CharField(max_length=100)

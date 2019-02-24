@@ -45,23 +45,36 @@ class DCastSerializer(serializers.ModelSerializer):
 
 
 class DDetailSerializer(serializers.ModelSerializer):
-  # comm = MovieSerializer(many=True)
+  # comm = MovieSerializer(required=True)
   class Meta(object):
     model = Detai
     fields = ('pk','name','Status','Language','Budget','Revenue','Production_Companies','Production_Country','adult')
 
   # def create(self, validated_data):
-  #       tracks_data = validated_data.pop('comm')
-  #       album = Detai.objects.create(**validated_data)
-  #       for track_data in tracks_data:
-  #           Moviee.objects.create(album=album, **track_data)
-  #       return album
+  #     """
+  #     Overriding the default create method of the Model serializer.
+  #     :param validated_data: data containing all the details of student
+  #     :return: returns a successfully created student record
+  #     """
+  #     user_data = validated_data.pop('comm')
+  #     user = MovieSerializer.create(MovieSerializer(), validated_data=user_data)
+  #     student, created = Detai.objects.update_or_create(user=user,
+  #                         subject_major=validated_data.pop('subject_major'))
+  #     return student
 
 
 class MovieDetailsSerializer(serializers.ModelSerializer):
   comments = CastSerializer(many=True)
+  # details = DetailSerializer(many=True)
   class Meta(object):
     model = Moviee
     fields = ('name','mdate','rating','murl','movietime','mtype','director','description','maincast','body','ytube','comments')
+
+
+class MovieDetailsSerializer1(serializers.ModelSerializer):
+
+  class Meta(object):
+    model = Moviee
+    fields = ('name','mdate','rating','murl','movietime','mtype','director','description','maincast','body','ytube')
 
   

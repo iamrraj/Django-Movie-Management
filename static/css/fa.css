@@ -4,6 +4,10 @@
   For .omb_spanOr use @body-bg instead of white.
 */
 
+@media only screen and (max-width: 600px) {
+
+
+}
 /********************* Shopping Demo-4 **********************/
 /********************* Shopping Demo-4 **********************/
 .product-grid4,.product-grid4 .product-image4{position:relative}
@@ -105,15 +109,15 @@ background-color: rgba(137, 255, 162, 0.78)
 .card:hover .middle {
   opacity: 1;
 }
-.p{
+.cc{
   padding: 10px;
   color: white;
-  margin-top: 70px;
 }
+
+
 .c{
   padding: 10px;
   color: white;
- 
 }
 
 
@@ -130,4 +134,68 @@ background-color: rgba(137, 255, 162, 0.78)
 .star{
   color: rgb(236, 233, 233);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+
+
+
+/* Footer Icon */
+.fab {
+  padding: 11px;
+  font-size: 23px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  box-shadow: 2px 2px 2px white;
+
+}
+
+.fab:hover {
+    opacity: 1;
+}
+
+.fa-facebook-f:hover {
+  background: #3B5998;
+  color: white;
+}
+
+
+.fa-twitter:hover {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-github:hover{
+  background: black;
+  color: white;
+}
+
+.fa-linkedin-in:hover {
+  background: #007bb5;
+  color: white;
+}
+
+
+.fa-instagram:hover {
+  background: #f09433; 
+background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+  color: white;
+}
+
+
+/* Review Part is header */
+
+
+
+.rev{
+
+    border-radius: 50%;
+    padding: 5px;
+    border: 3px solid rgba(137, 255, 162, 0.78);
+
 }
