@@ -27,6 +27,7 @@ class Moviee(models.Model):
   movietime = models.CharField(max_length=50)
   mtype = models.CharField(max_length=100)
   director =  models.CharField(max_length=100)
+  quality =  models.CharField(max_length=100,default="HD")
   description =HTMLField()
   maincast = HTMLField()
   body = models.CharField(max_length=200)
@@ -59,9 +60,24 @@ class Moviee(models.Model):
       return self.comments.all().order_by('-role')
 
   @property
-  def get_detail(self):
-      return self.details.all().order_by('-role')
+  def get_link(self):
+      return self.link.all().order_by('-role')
 
+
+class Movie(models.Model):
+  name = models.ForeignKey(Moviee, related_name='link', on_delete=models.CASCADE)
+  link = models.URLField(default="http://www.watchonlinemovies.com.pk/")
+  role = models.CharField(max_length=50)
+
+  def __str__(self):
+    return self.link
+
+  def __unicode__(self):
+    return self.link
+
+  @property
+  def get_link(self):
+      return self.link.all().order_by('-role')
 
   
 class Cast(models.Model):

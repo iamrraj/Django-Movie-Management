@@ -39,6 +39,21 @@ z-index: 10;
   color: white;
  
 }
+
+.product-new-label{
+  color:#fff;
+  background-color:red;
+  font-size:13px;
+  font-weight:800;
+  line-height:25px;
+  height:25px;
+  width:54px;
+  position:absolute;
+  left:8px;
+  text-align: center;
+  top:8px;
+  transition:all .3s
+}
 @media only screen and (max-width: 600px) {
 .if{
   height: 250px;
@@ -57,14 +72,14 @@ z-index: 10;
 
 <div id="fact1" >
 
-<div class="container"  >
+<div class="container">
 
-  <div class="row">
+  <div class="row container" style="margin-top: 70px;">
     <div class="col-md-5">
-    <img class="card-img-top image" src="{{ moviee.murl }}" alt="{{ post.name }}" style="height: 480px;">
+    <img class="card-img-top image" src="{% if moviee.murl %}{{ moviee.murl }} {% else %}http://www.markweb.in/primehouseware/images/noimage.png {% endif %}" alt="{{ post.name }}" style="height: 480px; > <!--"-->
    
     </div>
-    <div class="col-md-7">
+    <div class="col-md-7" >
         <h1 class="name">{{ moviee.name }}</h1>
         <p class="star" ><i class="fa fa-calendar" style="color:rgba(137, 255, 162, 0.78)"></i>  {{ moviee.mdate|date:'Y-m-d' }} 
        <span style="margin-left: 20px;"><i class="fa fa-star-o" style="color:rgba(137, 255, 162, 0.78)"></i>  {{ moviee.rating }}/10 </span>
@@ -80,10 +95,11 @@ z-index: 10;
 
 
 
+
 <div class="headerr container" style="margin-top: 30px;">
 <h2 style="color:rgb(236, 233, 233);" >{{ moviee.name }} Trailer </h2><hr style="border-width: 2px; border-color:rgba(137, 255, 162, 0.78) " />
 
-<iframe class="col-md-12 if" height="470px;" src="{{moviee.ytube}}" ></iframe>
+<iframe class="col-md-12 if" height="470px;" src="{% if moviee.ytube %}{{ moviee.ytube }} {% else %}https://www.youtube.com/watch?v=05DqIGS_koU {% endif %}" ></iframe>
 
 </div>
 
@@ -94,7 +110,7 @@ z-index: 10;
   <div class="col-sm-2" style="margin-top: 15px;">
     <div class="card">
     <a href="">
-     <img class="card-img-top ig image" src="{{ postt.murl }}" alt="{{ postt.name }}" style="height: 210px; border: 1px solid rgba(137, 255, 162, 0.78) ; " >
+     <img class="card-img-top ig image" src="{% if postt.murl %}{{ postt.murl }} {% else %}http://www.markweb.in/primehouseware/images/noimage.png {% endif %}" alt="{{ postt.name }}" style="height: 210px; border: 1px solid rgba(137, 255, 162, 0.78) ; " >
       <div class="middle">
         <p class="c">{{ postt.cname }}</p>
         <p class="c">{{ postt.role }}</p>
@@ -112,7 +128,8 @@ z-index: 10;
   <div class="col-sm-3" style="margin-top: 15px;">
     <div class="card">
     <a href="{% url 'rmovie:product_detail' post.pk %}">
-     <img class="card-img-top image" src="{{ post.murl }}" alt="{{ post.name }}" style="height: 300px;">
+     <img class="card-img-top image" src="{{ post.murl }}" alt="{{ post.name }}" style="height: 300px; border: 2px solid rgba(137, 255, 162, 0.78)">
+     <span class="product-new-label">{{post.quality }}</span>
       <div class="middle">
         <p class="cc" style="margin-bottom: 60px;">{{ post.mdate|date:'Y-m-d' }}</p>
         <p class="cc">{{ post.name  }}</p>
@@ -122,7 +139,21 @@ z-index: 10;
   </div>
 {% endfor %}
   </div>
-</div> 
+
+
+  <div class="headerr container " style="margin-top: 30px;">
+  <h2 style="color:rgb(236, 233, 233);" >Movie Watch Link</h2><hr style="border-width: 2px; border-color:rgba(137, 255, 162, 0.78) " />
+    <div class="row">
+
+      <div class="col-sm-6" style="margin-top: 15px;">
+  {% for move in movie.get_link %} 
+      {{ move.role }}
+  {% endfor %}
+      </div>
+   
+      </div>
+  </div>
+
 
 <div class="headerr container" style="margin-top: 30px;">
 <h2 style="color:rgb(236, 233, 233);" >{{ moviee.name }} Details </h2><hr style="border-width: 2px; border-color:rgba(137, 255, 162, 0.78) " />
@@ -136,7 +167,6 @@ z-index: 10;
 <h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;"> Ratiing:  <span class="star"><i class="fa fa-star-o" style="color:rgba(137, 255, 162, 0.78)"></i> {{moviee.rating}} </span></h6>
 <h6 style="color:rgba(137, 255, 162, 0.78); margin-top:15px;"> -18:  <span class="star">{{moviee.detai.adult}} </span></h6>
 </div>
-</div></div>
 
 <div class="headerr" style="margin-top: 30px;">
 <h2 style="color:rgb(236, 233, 233);" >Reviews And Like </h2><hr style="border-width: 2px; border-color:rgba(137, 255, 162, 0.78) " />
@@ -163,6 +193,7 @@ s.setAttribute('data-timestamp', +new Date());
                             
 
 </div>
+</div></div></div>
 </div>
 
 

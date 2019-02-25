@@ -17,6 +17,21 @@
 .pagination .page-item{
   border: 1px solid black;
 }
+.product-new-label{
+  color:#fff;
+  background-color:rgba(255, 0, 0, 0.78);
+  font-size:13px;
+  font-weight:800;
+  line-height:25px;
+  height:25px;
+  width:54px;
+  position:absolute;
+  left:8px;
+  text-align: center;
+  top:8px;
+  transition:all .3s
+}
+
    </style>
 {% endblock %}
 
@@ -49,7 +64,8 @@
   <div class="col-sm-3">
     <div class="card" style="margin-top: 10px;">
     <a href="{% url 'rmovie:product_detail' post.pk %}">
-     <img class="card-img-top image" src="{{ post.murl }}" alt="{{ post.cname }}" style="height: 370px;">
+     <img class="card-img-top image" src="{% if post.murl %}{{ post.murl }} {% else %}http://www.markweb.in/primehouseware/images/noimage.png {% endif %}" alt="{{ post.cname }}" style="height: 350px; border: 2px solid rgba(137, 255, 162, 0.78);  ">
+     <span class="product-new-label">{{post.quality }}</span>
       <div class="middle">
         <p class="cc" style="margin-bottom: 80px;">{{ post.mdate|date:'Y-m-d' }}</p>
         <p class="cc">{{ post.name  }}</p>

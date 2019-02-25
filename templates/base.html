@@ -40,10 +40,11 @@
          
         {% block head %}{% endblock %}
         {% block css %}{% endblock %}
-</head>
-<body id="fact">
 
- <div id="fb-root"></div>
+
+</head>
+
+<div id="fb-root"></div>
     <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -54,13 +55,14 @@
 <div>
 
 
+<body id="fact">
 <div class="container">
 
-<nav class="navbar navbar-expand-lg navbar-light style="background:transparent ">
-  <a class="navbar-brand animated rubberBand delay-5s" href="{% url 'rmovie:product' %}">
+<nav class="navbar navbar-expand-lg navbar-light" style="background:transparent">
+  <a class="navbar-brand animated rubberBand delay-1s" href="{% url 'rmovie:product' %}">
 
-            <img src="https://www.lab.tristan-lanoye.com/react-moviedb/images/logo.svg" width="150" height="60" class="d-inline-block align-top" alt="">
-        </a>
+    <img src="https://www.lab.tristan-lanoye.com/react-moviedb/images/logo.svg" width="150" height="60" class="d-inline-block align-top" alt="">
+  </a>
 
   <button class="navbar-toggler" style="background: rgba(137, 255, 162, 0.78);" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon "  ></span>
@@ -75,14 +77,14 @@
     <li class="nav-item animated fadeInDown delay-2s">
         <a class="nav-link active " href="" style="color: rgba(137, 255, 162, 0.78)"><i class="fa fa-user"></i> Popular </a>
     </li>
-    <li class="nav-item animated fadeInDown delay-2s">
+    <li class="nav-item animated fadeInDown delay-3s">
         <a class="nav-link active " href="{% url 'rmovie:toprated' %}" style="color: rgba(137, 255, 162, 0.78)" ><i class="fa fa-star"></i> Top Rated </a>
     </li>
-    <li class="nav-item animated fadeInDown delay-2s">
+    <li class="nav-item animated fadeInDown delay-4s">
         <a class="nav-link active " href="{% url 'rmovie:recent' %}" style="color: rgba(137, 255, 162, 0.78)" ><i class="fa fa-address-book-o"></i> Recent Movie </a>
     </li>
 
-    <li class="nav-item animated fadeInDown delay-2s">
+    <li class="nav-item animated fadeInDown delay-5s">
         <a class="nav-link active " href="{% url 'rmovie:create' %}" style="color: rgba(137, 255, 162, 0.78)" ><i class="fa fa-plus"></i>  Create</a>
     </li>
     </ul>
@@ -99,9 +101,9 @@
   </div>
 </nav>
 
- <hr style=" border-width: 1px; border-color: rgba(137, 255, 162, 0.78)">
+ 
 
-     </div>
+</div><hr style=" border-width: 1px; border-color: rgba(137, 255, 162, 0.78)">
 
 {% block body %}
 {% endblock %}
