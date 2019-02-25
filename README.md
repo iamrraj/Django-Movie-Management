@@ -8,7 +8,13 @@ Main Page
 
 Deatils Of Movie
 ![Imgur](https://i.imgur.com/VZDjmCj.png)
+
+Trailer And Cast&Crews
 ![Imgur](https://i.imgur.com/LJFwjNM.png)
+
+Recommended Movie List and Movie Watch Link
 ![Imgur](https://i.imgur.com/RYmEUVV.png)
+
+Reiews And Like
 ![Imgur](https://i.imgur.com/xNyDsBd.png)
 
